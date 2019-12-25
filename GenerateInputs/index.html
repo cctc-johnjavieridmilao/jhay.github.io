@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Test</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <input type="number" class="form-control" id="input">
+                <input type="hidden" id="count">
+            </div>
+            <div class="col-md-12" id="child">
+
+            </div>
+
+            <div class="col-md-12 mt-2">
+                <button type="button" class="btn btn-block" id="getval">Get Value</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+<script src="assets/js/jquery.min.js"></script>
+
+</html>
+
+<script>
+    $(document).ready(function () {
+        $('#input').on('keyup', function () {
+            $val = $(this).val();
+            $('#child').empty();
+            if ($val != "") {
+                for (var i = 0; i < parseInt($val); i++) {
+                    $('#count').val(i + 1);
+                    console.log(i + 1)
+                    $('#child').append(
+                        `<label>Number: ${i+1}</label><input type="text" id="test${i}" class="form-control">`
+                    );
+                }
+            } else {
+                $('#child').empty();
+            }
+        })
+
+        $('#getval').on('click', function () {
+            $count = $('#count').val();
+            for (var i = 0; i < $count; i++) {
+                console.log($('#test' + i).val());
+            }
+            //console.log($count)
+        })
+    })
+</script>
